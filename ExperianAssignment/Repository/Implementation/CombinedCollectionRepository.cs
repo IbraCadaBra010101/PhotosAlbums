@@ -27,11 +27,11 @@ namespace ExperianAssignment.Repository.Implementation
 
               select new CombinedCollectionDto()
               {
-                  Id = album.Id,
+                  AlbumId = album.Id,
                   UserId = album.UserId,
                   Title = album.Title,
                   Photos = photos.Where(p => p.AlbumId == album.Id)
-             };
+              };
 
             return combinedCollection;
         }
@@ -41,18 +41,19 @@ namespace ExperianAssignment.Repository.Implementation
             var photos = await _dataContextService.GetPhotos("/photos");
             var albums = await _dataContextService.GetAlbums("/albums");
 
-            IEnumerable<CombinedCollectionDto> combinedCollection =
-              from album in albums where userId == album.UserId
+            var combinedCollection =
+               from album in albums
+               where userId == album.UserId
 
-              select new CombinedCollectionDto()
-              {
-                  Id = album.Id,
-                  UserId = album.UserId,
-                  Title = album.Title,
-                  Photos = photos.Where(p => p.AlbumId == album.Id)
-              };
+               select new CombinedCollectionDto()
+               {
+                   AlbumId = album.Id,
+                   UserId = album.UserId,
+                   Title = album.Title,
+                   Photos = photos.Where(p => p.AlbumId == album.Id)
+               };
 
-            return  combinedCollection;
+            return combinedCollection;
         }
 
     }

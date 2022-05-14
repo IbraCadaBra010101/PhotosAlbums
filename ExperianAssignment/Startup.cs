@@ -28,9 +28,7 @@ namespace ExperianAssignment
             services.AddControllers();
             services.AddScoped<ICombinedCollectionRepository, CombinedCollectionRepository>();
             services.AddSingleton<IDataContextService, DataContextService>();
-            services.AddHttpClient("DataContextService", c => c.BaseAddress = new Uri("http://jsonplaceholder.typicode.com/"));
-         
-            
+            services.AddHttpClient("DataContextService", c => c.BaseAddress = new Uri("http://jsonplaceholder.typicode.com/"));  
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
